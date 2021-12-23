@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    var msg = SessionUser.UserName;
+    var loadedDate = SessionUser.LoginDate;
+
+
+
+
+}
+<script >
+
+function getDateInput(){
+    const pickedDate = document.querySelector('input[type="month"]').value.split("-")[1];
+    let link = "";
+    if (pickedDate === ""){link = "/Home/Index"}
+    else{link = "/Home/MonthlyReport/" + pickedDate;}  
+    document.getElementById("changeDate").setAttribute("href", link);}
+</script>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome, @msg</h1>
+    <p>Let's get started</p>
+
+    <a class="myButton" asp-area="" asp-controller="Home" asp-action="AddActivity">Add a new activity</a>
+    <a class="myButton" asp-area="" asp-controller="Home" asp-action="MyActivities" asp-route-id="@loadedDate">Check your activities</a>
+
+
+</div>
+<br>
+<div style="position:absolute; right: 45%; bottom: 60%">
+    <form action="">
+
+        <input type="month" name="date" id="date" required>
+        <br/>
+        <br>
+        <a class="myButton" href="" id="changeDate" onclick="getDateInput()" style="position: relative; right: -12%; bottom: 50%">Request report</a>
+    </form>
+
+</div>

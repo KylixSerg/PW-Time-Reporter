@@ -1,0 +1,63 @@
+﻿@model Entry
+@{
+    ViewData["title"] = "add a new activity";
+    // get the list of the available activities to choose from 
+    var date = DateTime.Today.Date.ToString("yyyy-MM-dd");
+    var activityCodes = SessionUser.AvailableActivityCodes;
+    
+}
+
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+    <title>add new task</title>
+</head>
+
+<body>
+
+
+<div>
+    @using (Html.BeginForm("AddActivity", "Home", FormMethod.Post))
+    {
+        <table >
+            <tr>
+                <td>Activity code </td>
+                <td>@Html.DropDownListFor(model => model.code, new SelectList(activityCodes), new {@style = "width : 700px;", @required = "required"})</td>
+            </tr>
+            <tr>
+                <td>Time spent </td>
+                <td >@Html.TextBoxFor(model => model.time, new {@type = "number", @style = "width : 700px;", @required = "required"})</td>
+            </tr>
+            <tr>
+                <td>Desciption </td>
+                <td >@Html.TextBoxFor(model => model.description, new {@type = "text",  @style = "width : 700px;", @required = "required"})</td>
+            </tr>
+            <tr>
+                <td>Date </td>
+                <td>@Html.TextBoxFor(model => model.date, new {@style = "width : 700px;",@type = "date", @required = "required",@max=@date })</td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <input class="myButton" type="submit" value="submit">
+                </td>
+            </tr>
+
+        </table>
+    }
+    
+
+</div>
+
+<script>
+    function setDatePicketLimit() {
+        let datePicker =  document.getElementById("datepicker");
+        datePicker.max = @date;
+        datePicker.min = "2014-01-01";
+      
+    }
+    </script>
+
+</body>
+</html>

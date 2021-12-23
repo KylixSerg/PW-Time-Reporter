@@ -1,2 +1,3 @@
-# PW-Time-Reporter
-This is a time reporting system in ASP.NET MVC
+# EGUI21Z-Serghine-Abdallah
+
+Projects directory for the EGUI class.
